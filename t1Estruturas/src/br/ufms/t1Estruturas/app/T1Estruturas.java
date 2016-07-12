@@ -19,7 +19,11 @@ public class T1Estruturas extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+
+        // Carrega arquivo fxml do pacote view.fxml
+        Parent root = (Parent) loader.load(getClass().getClassLoader().getResourceAsStream(
+                "br/ufms/t1Estruturas/view/fxml/Principal.fxml"));
         
         Scene scene = new Scene(root);
         

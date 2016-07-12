@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufms.t1Estruturas.controller.PrincipalController">
+   <bottom>
+      <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
+        <items>
+          <Button fx:id="btn512" mnemonicParsing="false" text="512" />
+            <Button fx:id="btn1024" mnemonicParsing="false" text="1024" />
+            <Button fx:id="btn4096" mnemonicParsing="false" text="4096" />
+        </items>
+      </ToolBar>
+   </bottom>
+   <right>
+      <ListView fx:id="listaVetores" editable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <TextArea fx:id="mostraVetores" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
