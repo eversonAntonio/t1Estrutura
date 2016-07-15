@@ -5,6 +5,7 @@
  */
 package br.ufms.t1Estruturas.controller;
 
+import br.ufms.t1Estruturas.model.BubbleSort;
 import br.ufms.t1Estruturas.model.Vetor;
 import java.net.URL;
 import java.util.ArrayList;
@@ -94,15 +95,26 @@ public class PrincipalController implements Initializable {
             dialogoErro.setHeaderText("");
             dialogoErro.showAndWait();
         });
-        
+
         btnBubble.setOnAction((ActionEvent event) -> {
-            Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
-            dialogoErro.setTitle("Erro");
-            dialogoErro.setContentText("Em desenvolvimento!");
-            dialogoErro.setHeaderText("");
-            dialogoErro.showAndWait();
+            if (lv.isEmpty()) {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro");
+                dialogoErro.setContentText("Adicione um vetor!");
+                dialogoErro.setHeaderText("");
+                dialogoErro.showAndWait();
+            } else if (listaVetores.getEditingIndex() == -1) {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro");
+                dialogoErro.setContentText("Selecione um vetor!");
+                dialogoErro.setHeaderText("");
+                dialogoErro.showAndWait();
+            }else{
+                BubbleSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV());
+                Vetor.imprimeVetor(mostraVetores, lv.get(listaVetores.getEditingIndex()).getV());
+            }
         });
-        
+
         btnHeap.setOnAction((ActionEvent event) -> {
             Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
             dialogoErro.setTitle("Erro");
@@ -110,7 +122,7 @@ public class PrincipalController implements Initializable {
             dialogoErro.setHeaderText("");
             dialogoErro.showAndWait();
         });
-        
+
         btnMerge.setOnAction((ActionEvent event) -> {
             Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
             dialogoErro.setTitle("Erro");
@@ -118,7 +130,7 @@ public class PrincipalController implements Initializable {
             dialogoErro.setHeaderText("");
             dialogoErro.showAndWait();
         });
-        
+
         btnQuick.setOnAction((ActionEvent event) -> {
             Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
             dialogoErro.setTitle("Erro");
