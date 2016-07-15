@@ -29,6 +29,7 @@ public class T1Estruturas extends Application {
         
         stage.setScene(scene);
         stage.show();
+        stage.centerOnScreen();
     }
 
     /**
