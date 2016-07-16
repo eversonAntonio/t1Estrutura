@@ -6,6 +6,7 @@
 package br.ufms.t1Estruturas.controller;
 
 import br.ufms.t1Estruturas.model.BubbleSort;
+import br.ufms.t1Estruturas.model.QuickSort;
 import br.ufms.t1Estruturas.model.Vetor;
 import java.net.URL;
 import java.util.ArrayList;
@@ -109,7 +110,7 @@ public class PrincipalController implements Initializable {
                 dialogoErro.setContentText("Selecione um vetor!");
                 dialogoErro.setHeaderText("");
                 dialogoErro.showAndWait();
-            }else{
+            } else {
                 BubbleSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV());
                 Vetor.imprimeVetor(mostraVetores, lv.get(listaVetores.getEditingIndex()).getV());
             }
@@ -132,11 +133,23 @@ public class PrincipalController implements Initializable {
         });
 
         btnQuick.setOnAction((ActionEvent event) -> {
-            Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
-            dialogoErro.setTitle("Erro");
-            dialogoErro.setContentText("Em desenvolvimento!");
-            dialogoErro.setHeaderText("");
-            dialogoErro.showAndWait();
+            if (lv.isEmpty()) {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro");
+                dialogoErro.setContentText("Adicione um vetor!");
+                dialogoErro.setHeaderText("");
+                dialogoErro.showAndWait();
+            } else if (listaVetores.getEditingIndex() == -1) {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro");
+                dialogoErro.setContentText("Selecione um vetor!");
+                dialogoErro.setHeaderText("");
+                dialogoErro.showAndWait();
+            } else {
+                QuickSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV(),
+                        0, lv.get(listaVetores.getEditingIndex()).getV().length-1);
+                Vetor.imprimeVetor(mostraVetores, lv.get(listaVetores.getEditingIndex()).getV());
+            }
         });
     }
 
