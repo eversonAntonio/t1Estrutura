@@ -8,7 +8,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufms.t1Estruturas.controller.PrincipalController">
    <bottom>
-      <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER_LEFT">
+      <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" BorderPane.alignment="CENTER_LEFT">
         <items>
             <HBox spacing="5.0">
                <children>
@@ -27,13 +27,15 @@
         </items>
       </ToolBar>
    </bottom>
-   <right>
-      <ListView fx:id="listaVetores" editable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </right>
    <center>
-      <TextArea fx:id="mostraVetores" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <SplitPane dividerPositions="0.5" BorderPane.alignment="CENTER">
+         <items>
+            <TextArea fx:id="mostraResult" editable="false" />
+            <TextArea fx:id="mostraVetores" editable="false" />
+         </items>
+      </SplitPane>
    </center>
-   <left>
-      <TextArea fx:id="mostraResult" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </left>
+   <right>
+      <ListView fx:id="listaVetores" editable="true" prefWidth="150.0" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>

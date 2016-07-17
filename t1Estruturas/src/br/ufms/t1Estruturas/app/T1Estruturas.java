@@ -5,8 +5,6 @@
  */
 package br.ufms.t1Estruturas.app;
 
-import br.ufms.t1Estruturas.model.QuickSort;
-import br.ufms.t1Estruturas.model.Vetor;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

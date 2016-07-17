@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ListView.EditEvent;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -51,6 +52,10 @@ public class PrincipalController implements Initializable {
     private Button btnMerge;
     @FXML
     private Button btnHeap;
+    @FXML
+    private TextField editValor;
+    @FXML
+    private Button btnBuscar;
 
     /**
      * Initializes the controller class.
@@ -87,12 +92,12 @@ public class PrincipalController implements Initializable {
         });
 
         listaVetores.setOnEditStart((EditEvent<String> event) -> {
-            Vetor.imprimeVetor(mostraVetores, lv.get(listaVetores.getEditingIndex()).getV());
+            mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
         });
         btn30x.setOnAction((ActionEvent event) -> {
             Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
             dialogoErro.setTitle("Erro");
-            dialogoErro.setContentText("Em desenvolvimento!");
+            dialogoErro.setContentText("Em desenvolvimento...");
             dialogoErro.setHeaderText("");
             dialogoErro.showAndWait();
         });
@@ -111,15 +116,17 @@ public class PrincipalController implements Initializable {
                 dialogoErro.setHeaderText("");
                 dialogoErro.showAndWait();
             } else {
-                BubbleSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV());
-                Vetor.imprimeVetor(mostraVetores, lv.get(listaVetores.getEditingIndex()).getV());
+                mostraResult.setText(mostraResult.getText()
+                        + BubbleSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV()));
+                lv.get(listaVetores.getEditingIndex()).setOrdenado(true);
+                mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
             }
         });
 
         btnHeap.setOnAction((ActionEvent event) -> {
             Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
             dialogoErro.setTitle("Erro");
-            dialogoErro.setContentText("Em desenvolvimento!");
+            dialogoErro.setContentText("Em desenvolvimento...");
             dialogoErro.setHeaderText("");
             dialogoErro.showAndWait();
         });
@@ -127,7 +134,7 @@ public class PrincipalController implements Initializable {
         btnMerge.setOnAction((ActionEvent event) -> {
             Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
             dialogoErro.setTitle("Erro");
-            dialogoErro.setContentText("Em desenvolvimento!");
+            dialogoErro.setContentText("Em desenvolvimento...");
             dialogoErro.setHeaderText("");
             dialogoErro.showAndWait();
         });
@@ -147,8 +154,52 @@ public class PrincipalController implements Initializable {
                 dialogoErro.showAndWait();
             } else {
                 QuickSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV(),
-                        0, lv.get(listaVetores.getEditingIndex()).getV().length-1);
-                Vetor.imprimeVetor(mostraVetores, lv.get(listaVetores.getEditingIndex()).getV());
+                        0, lv.get(listaVetores.getEditingIndex()).getV().length - 1);
+                lv.get(listaVetores.getEditingIndex()).setOrdenado(true);
+                mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
+            }
+        });
+
+        btnBuscar.setOnAction((ActionEvent event) -> {
+            if (editValor.getText().isEmpty()) {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro");
+                dialogoErro.setContentText("Digite um valor a ser buscado!");
+                dialogoErro.setHeaderText("");
+                dialogoErro.showAndWait();
+            } else {
+                try {
+                    if ((Integer.parseInt(editValor.getText()) > 1000)
+                            || (Integer.parseInt(editValor.getText()) < 0)) {
+                        Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                        dialogoErro.setTitle("Erro");
+                        dialogoErro.setContentText("Valor inválido! O valor deve"
+                                + " ser um número inteiro de 0 até 1000.");
+                        dialogoErro.setHeaderText("");
+                        dialogoErro.showAndWait();
+                    } else if (listaVetores.getEditingIndex() == -1) {
+                        Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                        dialogoErro.setTitle("Erro");
+                        dialogoErro.setContentText("Selecione um vetor!");
+                        dialogoErro.setHeaderText("");
+                        dialogoErro.showAndWait();
+                    } else if (lv.get(listaVetores.getEditingIndex()).isOrdenado()) {
+                        mostraResult.setText(mostraResult.getText() + Vetor.buscaBinaria(
+                                lv.get(listaVetores.getEditingIndex()).getV(),
+                                Integer.parseInt(editValor.getText())));
+                    } else {
+                        mostraResult.setText(mostraResult.getText() + Vetor.buscaSequencial(
+                                lv.get(listaVetores.getEditingIndex()).getV(),
+                                Integer.parseInt(editValor.getText())));
+                    }
+                } catch (Exception e) {
+                    Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                    dialogoErro.setTitle("Erro");
+                    dialogoErro.setContentText("Valor inválido! Digite somente números inteiros.");
+                    dialogoErro.setHeaderText("");
+                    dialogoErro.showAndWait();
+                }
+
             }
         });
     }

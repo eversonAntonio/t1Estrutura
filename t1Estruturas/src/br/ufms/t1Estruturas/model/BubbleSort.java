@@ -11,17 +11,23 @@ package br.ufms.t1Estruturas.model;
  */
 public class BubbleSort {
 
-    public static void ordenaVetor(int[] v) {
-        int aux;
+    public static String ordenaVetor(int[] v) {
+        String s = "MÉTODO BUBBLE";
+        s += "\nQuantidade de comparações realizadas: ";
+        int aux, comparacoes = 0, trocas = 0;
         for (int x = v.length - 1; x > 0; x--) {
             for (int y = 0; y < x; y++) {
                 if (v[y] > v[y + 1]) {
                     aux = v[y];
                     v[y] = v[y + 1];
                     v[y + 1] = aux;
+                    trocas++;
                 }
+                comparacoes++;
             }
         }
+        s += comparacoes + "\nQuantidade de trocas realizadas: " + trocas;
+        return s + "\n----------------------------------------\n";
     }
 
 }
