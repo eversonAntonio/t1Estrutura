@@ -36,7 +36,7 @@ public class Vetor implements Serializable {
     public static String imprimeVetor(int[] vetor) {
         String t;
         t = "| ";
-        int count = 1;
+        int count = 0;
         int limite = 5;
         for (int i = 0; i < vetor.length - 1; i++) {
             t = t + vetor[i] + " | ";
@@ -63,7 +63,7 @@ public class Vetor implements Serializable {
             }
         }
         if (ir != -1) {
-            s += "\nIndice: " + ir + "\nValor: " + v[ir - 1] + "";
+            s += "\nPosição: " + ir + "\nValor: " + v[ir - 1] + "";
         } else {
             s += "\nValor não encontrado";
         }
@@ -71,9 +71,39 @@ public class Vetor implements Serializable {
     }
 
     public static String buscaBinaria(int[] v, int valor) {
-        String s = "BUSCA BINÁRIA\n";
-        s += "Em desenvolvimento...";
+        String s = "BUSCA BINÁRIA";
+        s += buscaBinariaRecursiva(v, valor, 0, v.length);
         return s + "\n----------------------------------------\n";
+    }
+    
+    private static String buscaBinariaRecursiva(int[] v, int valor, int esq, int dir){
+        String s = "\nIndice: ";
+        int meio;
+        while (esq <= dir){
+            meio = esq + dir;
+            if (meio%2!=0){
+                meio++;
+            }
+            meio = (meio/2);
+            if (v[meio]==valor){
+                s += meio;
+                return s;
+            } else if (valor>v[meio]){
+                if (meio==dir){
+                    return "\nValor " + valor + " não encontrado!";
+                } else {
+                    esq = meio + 1;
+                }
+            } else {
+                if (meio==esq){
+                    return "\nValor não encontrado!";
+                } else {
+                    dir = meio - 1;
+                }
+                
+            }
+        }
+        return null;
     }
 
     /**
