@@ -13,6 +13,7 @@ public class BubbleSort {
 
     public static String ordenaVetor(int[] v) {
         String s = "MÉTODO BUBBLE";
+        s += "\nTamanho do vetor: " + v.length;
         s += "\nQuantidade de comparações realizadas: ";
         int aux, comparacoes = 0, trocas = 0;
         for (int x = v.length - 1; x > 0; x--) {

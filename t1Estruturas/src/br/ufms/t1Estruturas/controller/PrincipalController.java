@@ -156,10 +156,18 @@ public class PrincipalController implements Initializable {
                 dialogoErro.setHeaderText("");
                 dialogoErro.showAndWait();
             } else {
+                MergeSort.comparação = 0;
+                MergeSort.trocas = 0;
                 MergeSort.mergeSort(lv.get(listaVetores.getEditingIndex()).getV(),
                         0, lv.get(listaVetores.getEditingIndex()).getV().length - 1);
                 lv.get(listaVetores.getEditingIndex()).setOrdenado(true);
                 mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
+                String s = "MÉTODO MERGE SORT";
+                s += "\nQuantidade de comparações realizadas: ";
+                s += MergeSort.comparação
+                        + "\nQuantidade de atribuições realizadas: " + MergeSort.trocas
+                        + "\n----------------------------------------\n";
+                mostraResult.setText(mostraResult.getText() + s);
             }
         });
 
@@ -177,11 +185,20 @@ public class PrincipalController implements Initializable {
                 dialogoErro.setHeaderText("");
                 dialogoErro.showAndWait();
             } else {
+                QuickSort.comparação = 0;
+                QuickSort.trocas = 0;
                 QuickSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV(),
                         0, lv.get(listaVetores.getEditingIndex()).getV().length - 1);
                 lv.get(listaVetores.getEditingIndex()).setOrdenado(true);
                 mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
+                String s = "MÉTODO QUICK SORT";
+                s += "\nQuantidade de comparações realizadas: ";
+                s += QuickSort.comparação
+                        + "\nQuantidade de trocas realizadas: " + QuickSort.trocas
+                        + "\n----------------------------------------\n";
+                mostraResult.setText(mostraResult.getText() + s);
             }
+
         });
 
         btnBuscar.setOnAction((ActionEvent event) -> {

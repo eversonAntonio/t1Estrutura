@@ -1,0 +1,15 @@
+MÉTODO BUBBLE
+Tamanho do vetor: 512
+Quantidade de comparações realizadas: 130816
+Quantidade de trocas realizadas: 65624
+----------------------------------------
+MÉTODO BUBBLE
+Tamanho do vetor: 1024
+Quantidade de comparações realizadas: 523776
+Quantidade de trocas realizadas: 265747
+----------------------------------------
+MÉTODO BUBBLE
+Tamanho do vetor: 4096
+Quantidade de comparações realizadas: 8386560
+Quantidade de trocas realizadas: 4212633
+----------------------------------------
