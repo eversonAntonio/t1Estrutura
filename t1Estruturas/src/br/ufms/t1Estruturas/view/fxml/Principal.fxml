@@ -22,6 +22,7 @@
                   <Button fx:id="btnHeap" mnemonicParsing="false" text="Heap" />
                   <TextField fx:id="editValor" promptText="Valor a ser buscado" />
                   <Button fx:id="btnBuscar" mnemonicParsing="false" text="Buscar" />
+                  <Button fx:id="btnSalvar" mnemonicParsing="false" text="Salvar" />
                </children>
             </HBox>
         </items>
@@ -30,7 +31,7 @@
    <center>
       <SplitPane dividerPositions="0.5" BorderPane.alignment="CENTER">
          <items>
-            <TextArea fx:id="mostraResult" editable="false" />
+            <TextArea fx:id="mostraResult" editable="false" wrapText="true" />
             <TextArea fx:id="mostraVetores" editable="false" />
          </items>
       </SplitPane>

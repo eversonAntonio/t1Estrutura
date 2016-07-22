@@ -6,16 +6,25 @@
 package br.ufms.t1Estruturas.controller;
 
 import br.ufms.t1Estruturas.model.BubbleSort;
+import br.ufms.t1Estruturas.model.MergeSort;
 import br.ufms.t1Estruturas.model.QuickSort;
+import br.ufms.t1Estruturas.model.Tela;
+import br.ufms.t1Estruturas.model.TextoASerSalvo;
 import br.ufms.t1Estruturas.model.Vetor;
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -56,6 +65,8 @@ public class PrincipalController implements Initializable {
     private TextField editValor;
     @FXML
     private Button btnBuscar;
+    @FXML
+    private Button btnSalvar;
 
     /**
      * Initializes the controller class.
@@ -132,11 +143,24 @@ public class PrincipalController implements Initializable {
         });
 
         btnMerge.setOnAction((ActionEvent event) -> {
-            Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
-            dialogoErro.setTitle("Erro");
-            dialogoErro.setContentText("Em desenvolvimento...");
-            dialogoErro.setHeaderText("");
-            dialogoErro.showAndWait();
+            if (lv.isEmpty()) {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro");
+                dialogoErro.setContentText("Adicione um vetor!");
+                dialogoErro.setHeaderText("");
+                dialogoErro.showAndWait();
+            } else if (listaVetores.getEditingIndex() == -1) {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro");
+                dialogoErro.setContentText("Selecione um vetor!");
+                dialogoErro.setHeaderText("");
+                dialogoErro.showAndWait();
+            } else {
+                MergeSort.mergeSort(lv.get(listaVetores.getEditingIndex()).getV(),
+                        0, lv.get(listaVetores.getEditingIndex()).getV().length - 1);
+                lv.get(listaVetores.getEditingIndex()).setOrdenado(true);
+                mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
+            }
         });
 
         btnQuick.setOnAction((ActionEvent event) -> {
@@ -200,6 +224,22 @@ public class PrincipalController implements Initializable {
                     dialogoErro.showAndWait();
                 }
 
+            }
+        });
+
+        btnSalvar.setOnAction((ActionEvent event) -> {
+            try {
+                TextoASerSalvo.mostraVetores = mostraResult;
+                FXMLLoader loader = new FXMLLoader();
+                Parent root = (Parent) loader.load(getClass().getClassLoader().getResourceAsStream(
+                        "br/ufms/t1Estruturas/view/fxml/TelaSalvar.fxml"));
+
+                Scene scene = new Scene(root);
+
+                Tela.tela.setScene(scene);
+                Tela.tela.showAndWait();
+            } catch (IOException ex) {
+                System.err.println(ex);
             }
         });
     }
