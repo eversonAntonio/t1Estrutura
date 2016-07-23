@@ -1,15 +1,15 @@
-MÃ‰TODO BUBBLE
+MÉTODO BUBBLE SORT
 Tamanho do vetor: 512
-Quantidade de comparaÃ§Ãµes realizadas: 130816
-Quantidade de trocas realizadas: 65624
+Quantidade de comparações realizadas: 130816
+Quantidade de trocas realizadas: 64461
 ----------------------------------------
-MÃ‰TODO BUBBLE
+MÉTODO BUBBLE SORT
 Tamanho do vetor: 1024
-Quantidade de comparaÃ§Ãµes realizadas: 523776
-Quantidade de trocas realizadas: 265747
+Quantidade de comparações realizadas: 523776
+Quantidade de trocas realizadas: 255370
 ----------------------------------------
-MÃ‰TODO BUBBLE
+MÉTODO BUBBLE SORT
 Tamanho do vetor: 4096
-Quantidade de comparaÃ§Ãµes realizadas: 8386560
-Quantidade de trocas realizadas: 4212633
+Quantidade de comparações realizadas: 8386560
+Quantidade de trocas realizadas: 4202748
 ----------------------------------------
