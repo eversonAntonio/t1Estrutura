@@ -11,7 +11,7 @@ package br.ufms.t1Estruturas.model;
  */
 public class QuickSort {
 
-    public static int comparação, trocas;
+    public static int comparacoes, trocas;
 
     public static void ordenaVetor(int[] v, int esq, int dir) {
         if (dir > esq) {
@@ -19,7 +19,7 @@ public class QuickSort {
             ordenaVetor(v, esq, q - 1);
             ordenaVetor(v, q + 1, dir);
         }
-        comparação++;
+        comparacoes++;
     }
 
     private static int dividir(int[] v, int esq, int dir) {
@@ -27,14 +27,11 @@ public class QuickSort {
         int j = dir;
         int i = esq;
         while (i < j) {
-            comparação++;
             while (v[i] <= pivo && i < dir) {
                 i++;
-                comparação++;
             }
             while (v[j] > pivo) {
                 j--;
-                comparação++;
             }
             if (i < j) {
                 int aux = v[i];
@@ -42,10 +39,11 @@ public class QuickSort {
                 v[j] = aux;
                 trocas++;
             }
-            comparação++;
+            comparacoes++;
         }
         v[esq] = v[j];
         v[j] = pivo;
+        trocas++;
         return j;
     }
 }

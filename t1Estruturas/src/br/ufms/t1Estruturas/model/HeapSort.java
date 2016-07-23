@@ -10,52 +10,52 @@ package br.ufms.t1Estruturas.model;
  * @author PC
  */
 public class HeapSort {
+    
+    public static int comparacoes, trocas;
 
-    public static void ordenarVetor(int[] vetor) {
-        int[] arvore = new int[vetor.length];
-        arvore[1] = vetor[0];
-        int count = 0;
-        int pai = 1;
-        int paiAtual = 1;
-        Inserir onde = Inserir.FILHO_ESQUERDA;
-        while (count < vetor.length) {
-            count++;
-            if (pai == paiAtual) {
-                arvore[obter(pai, onde)] = vetor[count];
-            } else {
-                arvore[obter(paiAtual, onde)] = vetor[count];
+    private static void fazerHeap(int[] v, int tamanho, int index) {
+        int maior, filho;
+        filho = 2 * index + 1;
+        maior = index;
+        if (filho < tamanho) {
+            if (v[filho] > v[maior]) {
+                maior = filho;
             }
-            if (onde == Inserir.FILHO_DIREITA) {
-                onde = Inserir.FILHO_ESQUERDA;
-            } else {
-                onde = Inserir.FILHO_DIREITA;
+            comparacoes++;
+        }
+        comparacoes++;
+        if (filho + 1 < tamanho) {
+            if (v[filho + 1] > v[maior]) {
+                maior = filho + 1;
             }
+            comparacoes++;
+        }
+        comparacoes++;
+        if (maior != index) {
+            int aux = v[index];
+            v[index] = v[maior];
+            v[maior] = aux;
+            fazerHeap(v, tamanho, maior);
+            trocas++;
+        }
+        comparacoes++;
+    }
+    
+    private static void constroiHeap(int[] v) {
+        for (int i = v.length / 2 - 1; i >= 0; i--){
+            fazerHeap(v, v.length, i);
         }
     }
-
-    private static int obter(int index, Inserir onde) {
-        switch (onde) {
-            case FILHO_DIREITA:
-                return obterFilhoDireita(index);
-            case FILHO_ESQUERDA:
-                return obterFilhoEsquerda(index);
-            case PAI:
-                return obterPai(index);
-            default:
-                return 0;
+    
+    public static void ordenacaoHeap(int[] v) {
+        constroiHeap(v);
+        for (int i = v.length - 1; i >= 1; i--) {
+            int aux = v[0];
+            v[0] = v[i];
+            v[i] = aux;
+            fazerHeap(v, i, 0);
+            trocas++;
         }
-    }
-
-    private static int obterPai(int index) {
-        return index / 2;
-    }
-
-    private static int obterFilhoEsquerda(int index) {
-        return 2 * index;
-    }
-
-    private static int obterFilhoDireita(int index) {
-        return 2 * index + 1;
     }
 
 }

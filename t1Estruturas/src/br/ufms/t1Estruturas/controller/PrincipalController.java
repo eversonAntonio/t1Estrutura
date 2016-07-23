@@ -6,6 +6,7 @@
 package br.ufms.t1Estruturas.controller;
 
 import br.ufms.t1Estruturas.model.BubbleSort;
+import br.ufms.t1Estruturas.model.HeapSort;
 import br.ufms.t1Estruturas.model.MergeSort;
 import br.ufms.t1Estruturas.model.QuickSort;
 import br.ufms.t1Estruturas.model.Tela;
@@ -13,8 +14,6 @@ import br.ufms.t1Estruturas.model.TextoASerSalvo;
 import br.ufms.t1Estruturas.model.Vetor;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -67,6 +66,8 @@ public class PrincipalController implements Initializable {
     private Button btnBuscar;
     @FXML
     private Button btnSalvar;
+    @FXML
+    private Button btnLimpar;
 
     /**
      * Initializes the controller class.
@@ -106,11 +107,48 @@ public class PrincipalController implements Initializable {
             mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
         });
         btn30x.setOnAction((ActionEvent event) -> {
-            Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
-            dialogoErro.setTitle("Erro");
-            dialogoErro.setContentText("Em desenvolvimento...");
-            dialogoErro.setHeaderText("");
-            dialogoErro.showAndWait();
+            if (lv.isEmpty()) {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro");
+                dialogoErro.setContentText("Adicione um vetor!");
+                dialogoErro.setHeaderText("");
+                dialogoErro.showAndWait();
+            } else if (listaVetores.getEditingIndex() == -1) {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro");
+                dialogoErro.setContentText("Selecione um vetor!");
+                dialogoErro.setHeaderText("");
+                dialogoErro.showAndWait();
+            } else {
+                BubbleSort.comparacoes = 0;
+                QuickSort.comparacoes = 0;
+                MergeSort.comparacoes = 0;
+                HeapSort.comparacoes = 0;
+                for (int x = 0; x < 30; x++) {
+                    BubbleSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV());
+                    QuickSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV(),
+                            0,
+                            lv.get(listaVetores.getEditingIndex()).getV().length - 1);
+                    MergeSort.mergeSort(lv.get(listaVetores.getEditingIndex()).getV(),
+                            0,
+                            lv.get(listaVetores.getEditingIndex()).getV().length - 1);
+                    HeapSort.ordenacaoHeap(lv.get(listaVetores.getEditingIndex()).getV());
+                }
+                lv.get(listaVetores.getEditingIndex()).setOrdenado(true);
+                mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
+                String s = "TESTE EXAUSTIVO";
+                s += "\nTamanho do vetor: " + lv.get(listaVetores.getEditingIndex()).getTamanho();
+                s += "\nMédia das comparações realizadas (BUBBLE): ";
+                s += (BubbleSort.comparacoes / 30);
+                s += "\nMédia das comparações realizadas (QUICK): ";
+                s += (QuickSort.comparacoes / 30);
+                s += "\nMédia das comparações realizadas (MERGE): ";
+                s += (MergeSort.comparacoes / 30);
+                s += "\nMédia das comparações realizadas (HEAP): ";
+                s += (HeapSort.comparacoes / 30);
+                s += "\n----------------------------------------\n";
+                mostraResult.setText(mostraResult.getText() + s);
+            }
         });
 
         btnBubble.setOnAction((ActionEvent event) -> {
@@ -127,19 +165,48 @@ public class PrincipalController implements Initializable {
                 dialogoErro.setHeaderText("");
                 dialogoErro.showAndWait();
             } else {
-                mostraResult.setText(mostraResult.getText()
-                        + BubbleSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV()));
+                BubbleSort.comparacoes = 0;
+                BubbleSort.trocas = 0;
+                BubbleSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV());
                 lv.get(listaVetores.getEditingIndex()).setOrdenado(true);
                 mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
+                String s = "MÉTODO BUBBLE SORT";
+                s += "\nTamanho do vetor: " + lv.get(listaVetores.getEditingIndex()).getTamanho();
+                s += "\nQuantidade de comparações realizadas: ";
+                s += BubbleSort.comparacoes
+                        + "\nQuantidade de trocas realizadas: " + BubbleSort.trocas
+                        + "\n----------------------------------------\n";
+                mostraResult.setText(mostraResult.getText() + s);
             }
         });
 
         btnHeap.setOnAction((ActionEvent event) -> {
-            Alert dialogoErro = new Alert(Alert.AlertType.INFORMATION);
-            dialogoErro.setTitle("Erro");
-            dialogoErro.setContentText("Em desenvolvimento...");
-            dialogoErro.setHeaderText("");
-            dialogoErro.showAndWait();
+            if (lv.isEmpty()) {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro");
+                dialogoErro.setContentText("Adicione um vetor!");
+                dialogoErro.setHeaderText("");
+                dialogoErro.showAndWait();
+            } else if (listaVetores.getEditingIndex() == -1) {
+                Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
+                dialogoErro.setTitle("Erro");
+                dialogoErro.setContentText("Selecione um vetor!");
+                dialogoErro.setHeaderText("");
+                dialogoErro.showAndWait();
+            } else {
+                HeapSort.comparacoes = 0;
+                HeapSort.trocas = 0;
+                HeapSort.ordenacaoHeap(lv.get(listaVetores.getEditingIndex()).getV());
+                lv.get(listaVetores.getEditingIndex()).setOrdenado(true);
+                mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
+                String s = "MÉTODO HEAP SORT";
+                s += "\nTamanho do vetor: " + lv.get(listaVetores.getEditingIndex()).getTamanho();
+                s += "\nQuantidade de comparações realizadas: ";
+                s += HeapSort.comparacoes
+                        + "\nQuantidade de trocas realizadas: " + HeapSort.trocas
+                        + "\n----------------------------------------\n";
+                mostraResult.setText(mostraResult.getText() + s);
+            }
         });
 
         btnMerge.setOnAction((ActionEvent event) -> {
@@ -156,16 +223,18 @@ public class PrincipalController implements Initializable {
                 dialogoErro.setHeaderText("");
                 dialogoErro.showAndWait();
             } else {
-                MergeSort.comparação = 0;
+                MergeSort.comparacoes = 0;
                 MergeSort.trocas = 0;
                 MergeSort.mergeSort(lv.get(listaVetores.getEditingIndex()).getV(),
-                        0, lv.get(listaVetores.getEditingIndex()).getV().length - 1);
+                        0,
+                        lv.get(listaVetores.getEditingIndex()).getV().length - 1);
                 lv.get(listaVetores.getEditingIndex()).setOrdenado(true);
                 mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
                 String s = "MÉTODO MERGE SORT";
+                s += "\nTamanho do vetor: " + lv.get(listaVetores.getEditingIndex()).getTamanho();
                 s += "\nQuantidade de comparações realizadas: ";
-                s += MergeSort.comparação
-                        + "\nQuantidade de atribuições realizadas: " + MergeSort.trocas
+                s += MergeSort.comparacoes
+                        + "\nQuantidade de trocas realizadas: " + MergeSort.trocas
                         + "\n----------------------------------------\n";
                 mostraResult.setText(mostraResult.getText() + s);
             }
@@ -185,15 +254,17 @@ public class PrincipalController implements Initializable {
                 dialogoErro.setHeaderText("");
                 dialogoErro.showAndWait();
             } else {
-                QuickSort.comparação = 0;
+                QuickSort.comparacoes = 0;
                 QuickSort.trocas = 0;
                 QuickSort.ordenaVetor(lv.get(listaVetores.getEditingIndex()).getV(),
-                        0, lv.get(listaVetores.getEditingIndex()).getV().length - 1);
+                        0,
+                        lv.get(listaVetores.getEditingIndex()).getV().length - 1);
                 lv.get(listaVetores.getEditingIndex()).setOrdenado(true);
                 mostraVetores.setText(Vetor.imprimeVetor(lv.get(listaVetores.getEditingIndex()).getV()));
                 String s = "MÉTODO QUICK SORT";
+                s += "\nTamanho do vetor: " + lv.get(listaVetores.getEditingIndex()).getTamanho();
                 s += "\nQuantidade de comparações realizadas: ";
-                s += QuickSort.comparação
+                s += QuickSort.comparacoes
                         + "\nQuantidade de trocas realizadas: " + QuickSort.trocas
                         + "\n----------------------------------------\n";
                 mostraResult.setText(mostraResult.getText() + s);
@@ -258,6 +329,10 @@ public class PrincipalController implements Initializable {
             } catch (IOException ex) {
                 System.err.println(ex);
             }
+        });
+
+        btnLimpar.setOnAction((ActionEvent event) -> {
+            mostraResult.setText("");
         });
     }
 

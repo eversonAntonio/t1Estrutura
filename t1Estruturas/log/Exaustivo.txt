@@ -1,0 +1,21 @@
+TESTE EXAUSTIVO
+Tamanho do vetor: 512
+Média das comparações realizadas (BUBBLE): 130816
+Média das comparações realizadas (QUICK): 1231
+Média das comparações realizadas (MERGE): 3327
+Média das comparações realizadas (HEAP): 22052
+----------------------------------------
+TESTE EXAUSTIVO
+Tamanho do vetor: 1024
+Média das comparações realizadas (BUBBLE): 523776
+Média das comparações realizadas (QUICK): 2281
+Média das comparações realizadas (MERGE): 7167
+Média das comparações realizadas (HEAP): 49405
+----------------------------------------
+TESTE EXAUSTIVO
+Tamanho do vetor: 4096
+Média das comparações realizadas (BUBBLE): 8386560
+Média das comparações realizadas (QUICK): 9535
+Média das comparações realizadas (MERGE): 32767
+Média das comparações realizadas (HEAP): 238791
+----------------------------------------

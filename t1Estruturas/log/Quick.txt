@@ -1,0 +1,15 @@
+MÉTODO QUICK SORT
+Tamanho do vetor: 512
+Quantidade de comparações realizadas: 8341
+Quantidade de trocas realizadas: 731
+----------------------------------------
+MÉTODO QUICK SORT
+Tamanho do vetor: 1024
+Quantidade de comparações realizadas: 17912
+Quantidade de trocas realizadas: 1803
+----------------------------------------
+MÉTODO QUICK SORT
+Tamanho do vetor: 4096
+Quantidade de comparações realizadas: 92065
+Quantidade de trocas realizadas: 8492
+----------------------------------------

@@ -11,7 +11,7 @@ package br.ufms.t1Estruturas.model;
  */
 public class MergeSort {
 
-    public static int comparação, trocas;
+    public static int comparacoes, trocas;
 
     public static void mergeSort(int vetor[], int inicio, int fim) {
         if (inicio < fim) {
@@ -19,9 +19,8 @@ public class MergeSort {
             mergeSort(vetor, inicio, meio);
             mergeSort(vetor, meio + 1, fim);
             merge(vetor, inicio, meio, fim);
-
         }
-        comparação++;
+        comparacoes++;
     }
 
     private static void merge(int vetor[], int inicio, int meio, int fim) {
@@ -38,26 +37,23 @@ public class MergeSort {
                 trocas++;
             }
             k++;
-            comparação++;
+            comparacoes++;
         }
 
         while (i <= meio) {
             vet[k] = vetor[i];
             k++;
             i++;
-            comparação++;
         }
 
         while (j <= fim) {
             vet[k] = vetor[j];
             k++;
             j++;
-            comparação++;
         }
 
         for (i = 0; i <= fim - inicio; i++) {
             vetor[inicio + i] = vet[i];
-            comparação++;
         }
     }
 }

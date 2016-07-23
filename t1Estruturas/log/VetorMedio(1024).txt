@@ -1,0 +1,15 @@
+MÉTODO BUBBLE
+Tamanho do vetor: 1024
+Quantidade de comparações realizadas: 523776
+Quantidade de trocas realizadas: 261909
+----------------------------------------
+MÉTODO QUICK SORT
+Tamanho do vetor: 1024
+Quantidade de comparações realizadas: 18253
+Quantidade de trocas realizadas: 1723
+----------------------------------------
+MÉTODO MERGE SORT
+Tamanho do vetor: 1024
+Quantidade de comparações realizadas: 22527
+Quantidade de trocas realizadas: 4520
+----------------------------------------

@@ -1,7 +1,0 @@
-MÉTODO BUBBLE
-Quantidade de comparações realizadas: 130816
-Quantidade de trocas realizadas: 63960
-----------------------------------------
-BUSCA BINÁRIA
-Indice: 0
-----------------------------------------

@@ -23,6 +23,7 @@
                   <TextField fx:id="editValor" promptText="Valor a ser buscado" />
                   <Button fx:id="btnBuscar" mnemonicParsing="false" text="Buscar" />
                   <Button fx:id="btnSalvar" mnemonicParsing="false" text="Salvar" />
+                  <Button fx:id="btnLimpar" mnemonicParsing="false" text="Limpar" />
                </children>
             </HBox>
         </items>
